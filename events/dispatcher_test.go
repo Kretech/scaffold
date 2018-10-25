@@ -26,14 +26,16 @@ func TestDispatcher_ListenFunc(t *testing.T) {
 type FakeProcess struct{ State int }
 type FakeListener1 struct{}
 
-func (Listener *FakeListener1) Handle(event Event) {
+func (Listener *FakeListener1) Handle(event Event) (err error) {
 	event.(*FakeProcess).State += 1
+	return
 }
 
 type FakeListener2 struct{}
 
-func (Listener *FakeListener2) Handle(event Event) {
+func (Listener *FakeListener2) Handle(event Event) (err error) {
 	event.(*FakeProcess).State += 2
+	return
 }
 
 func TestDispatcher_ListenEvent(t *testing.T) {
