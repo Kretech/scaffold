@@ -13,7 +13,7 @@ func TestIniRepository(t *testing.T) {
 		t,
 		func() {
 
-			c := NewRepository()
+			c := NewMapRepository()
 			c.Set(`app.mode`, `dev`)
 
 			So(c.Get(`app.mode`) == `dev`, ShouldBeTrue)
