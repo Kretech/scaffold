@@ -95,6 +95,7 @@ func TestContainer_BindInstance(t *testing.T) {
 
 			c.BindInstance(`person`, *p)
 			So(c.Make(`person`) == *p, ShouldBeTrue)
+			So(c.Make(`person`).(Person).Age == p.Age, ShouldBeTrue)
 		},
 	)
 }
