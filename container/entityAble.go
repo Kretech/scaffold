@@ -2,16 +2,15 @@ package container
 
 import (
 	"fmt"
-	"log"
 	"reflect"
 )
 
 type entityAble interface {
-	//	实例化实现
+	// 	实例化实现
 	buildEmptyEntity(*Container, ...interface{}) interface{}
 }
 
-//	把任何对象转换成容器内的格式化对象
+// 	把任何对象转换成容器内的格式化对象
 func newEntityAble(concrete interface{}) entityAble {
 	switch concrete.(type) {
 
@@ -37,7 +36,7 @@ func newEntityAble(concrete interface{}) entityAble {
 	}
 }
 
-//	构建成为新的对象
+// 	构建成为新的对象
 func buildEntity(able entityAble, params []interface{}) interface{} {
 
 	if able == nil {
@@ -64,7 +63,7 @@ func initWithTag(obj interface{}) interface{} {
 	}
 
 	for i := 0; i < typ.NumField(); i++ {
-		log.Println("	autowired:", typ.Field(i).Name, typ.Field(i).Tag.Get("autowired"))
+		// log.Println("	autowired:", typ.Field(i).Name, typ.Field(i).Tag.Get("autowired"))
 	}
 
 	return obj

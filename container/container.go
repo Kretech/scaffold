@@ -16,7 +16,7 @@ type Options struct {
 }
 
 type Container struct {
-	//	标记是否已被解析过
+	// 	标记是否已被解析过
 	resolved map[string]bool
 
 	hasBinding
@@ -64,6 +64,11 @@ func (c *Container) BindAny(abstract string, entity interface{}) {
 func (c *Container) Singleton(abstract string, entity interface{}) {
 	c.BindAny(abstract, entity)
 	c.markAsShared(abstract)
+}
+
+// Get is alias for Make
+func (c *Container) Get(abstract string, params ...interface{}) interface{} {
+	return c.Make(abstract, params...)
 }
 
 func (c *Container) Make(abstract string, params ...interface{}) interface{} {
